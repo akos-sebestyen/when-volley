@@ -13,7 +13,8 @@ import { getNextClosestGame } from "@/lib/getNextGame";
 import { useTeamsQuery } from "@/lib/queries/useTeamsQuery";
 import { getAllFutureGamesForTeam } from "@/lib/getAllFutureGamesForTeam";
 import { format } from "date-fns";
-import { MapPin } from "lucide-react"; // Importing the MapPin icon from lucide-react
+import { MapPin } from "lucide-react";
+import NPCDialogue from "@/app/teams/[id]/NPCDialogue"; // Importing the MapPin icon from lucide-react
 
 export default function TeamPage() {
   const { id: teamId } = useParams<{ id: string }>();
@@ -26,11 +27,11 @@ export default function TeamPage() {
   const futureGameInfos = getAllFutureGamesForTeam(schedule ?? [], teamName);
 
   return (
-    <div className="flex flex-col mx-10 gap-6 items-center">
+    <div className="flex flex-col mx-10 gap-8 items-center">
       <h2 className="text-2xl font-bold">{decodeTeamName(teamId)}</h2>
 
       {/* Card Container with max-width */}
-      <div className="w-full max-w-3xl">
+      <div className="flex flex-col gap-5 w-full max-w-2xl">
         {/* Next Game Section */}
         <Card>
           <CardHeader>
@@ -67,7 +68,7 @@ export default function TeamPage() {
         </Card>
 
         {/* Future Games Section */}
-        <Card className="mt-6">
+        <Card>
           <CardHeader>
             <CardTitle>Future Games</CardTitle>
           </CardHeader>
@@ -102,6 +103,7 @@ export default function TeamPage() {
             )}
           </CardContent>
         </Card>
+        <NPCDialogue />
       </div>
     </div>
   );

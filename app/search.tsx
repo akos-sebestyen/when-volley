@@ -45,7 +45,7 @@ export default function Search() {
         <Command>
           <Popover open={isOpen} onOpenChange={setIsOpen}>
             <form
-              className="flex flex-row gap-2 m-10"
+              className="flex flex-row gap-2 m-6"
               onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`/teams/${b64EncodeUnicode(searchTerm)}`);

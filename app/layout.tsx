@@ -55,7 +55,7 @@ export default function RootLayout({
           </div>
 
           {/* Updated Footer with Light Background */}
-          <footer className="bg-gray-100 text-gray-800 py-4 flex items-center justify-center mt-auto w-full">
+          <footer className="bg-gray-100 text-gray-800 py-4 flex items-center justify-center mt-5 w-full">
             <a
               href="https://github.com/akos-sebestyen/when-volley"
               className="text-blue-500 hover:underline flex items-center"
