@@ -28,17 +28,33 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <QueryClientProvider client={queryClient}>
-          <div>
-            <main>
+          <div className="flex-grow">
+            <main className="flex-grow">
               <Search />
               {children}
             </main>
-
-            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
           </div>
+
+          {/* Updated Footer with Light Background */}
+          <footer className="bg-gray-100 text-gray-800 py-4 flex items-center justify-center mt-auto w-full">
+            <a
+              href="#"
+              className="text-blue-500 hover:underline flex items-center"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {/* GitHub Icon as an Image */}
+              <img
+                src="/icons/github.svg"
+                alt="GitHub"
+                className="mr-2 h-6 w-6"
+              />
+            </a>
+          </footer>
+
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </body>

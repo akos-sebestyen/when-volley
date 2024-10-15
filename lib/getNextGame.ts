@@ -33,8 +33,8 @@ export function getNextClosestGame(
         return; // Skip this game
       }
 
-      // Remove potential time zone abbreviation at the end (e.g., "PST")
-      timeString = timeString.replace(/\b[A-Z]{2,4}\b$/, "").trim(); // Removes "PST", "EST", etc.
+      // Remove only the time zone abbreviation (e.g., "PST", "EST", etc.) but leave "AM/PM"
+      timeString = timeString.replace("/s(PST|PDT)$/", ""); // Removes "PST", "EST", etc., if present
 
       // Now split the time to handle AM/PM and hour parsing
       let timeWithoutZone = timeString.split(" ")[0]; // e.g., "8:00"
