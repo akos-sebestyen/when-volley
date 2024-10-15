@@ -1,9 +1,9 @@
-import { getTeamNames } from "@/lib/getTeamNames";
+import { getTeamData } from "@/lib/getTeamData";
 
 export async function GET() {
-  const teamNames = await getTeamNames();
+  const data = await getTeamData();
 
   return Response.json({
-    data: teamNames,
+    data,
   });
 }

@@ -37,8 +37,10 @@ export default function Search() {
     async function fetchTeamNames() {
       try {
         const response = await fetch("/api/teams");
-        const { data } = await response.json();
-        setTeamNames(data);
+        const {
+          data: { teamNames: apiTeamNames },
+        } = await response.json();
+        setTeamNames(apiTeamNames);
       } catch (error) {
         console.error("Error fetching team names:", error);
       }
