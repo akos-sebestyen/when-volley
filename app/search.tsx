@@ -44,7 +44,13 @@ export default function Search() {
       <div className="flex">
         <Command>
           <Popover open={isOpen} onOpenChange={setIsOpen}>
-            <div className="flex flex-row gap-2 m-10">
+            <form
+              className="flex flex-row gap-2 m-10"
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/teams/${b64EncodeUnicode(searchTerm)}`);
+              }}
+            >
               <PopoverAnchor asChild>
                 <Input
                   type="text"
@@ -82,8 +88,8 @@ export default function Search() {
                   )}
                 </CommandList>
               </PopoverContent>
-              <Button>Search</Button>
-            </div>
+              <Button type="submit">Search</Button>
+            </form>
           </Popover>
         </Command>
       </div>
