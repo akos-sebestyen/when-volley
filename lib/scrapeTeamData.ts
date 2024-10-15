@@ -35,7 +35,7 @@ export async function scrapeTeamData(): Promise<{
 
     const schedule: Schedule = [];
 
-    const tables = $("table");
+    const tables = $("table.table-hover.w-100");
 
     const dates = $(".h5heading.my-2");
 
