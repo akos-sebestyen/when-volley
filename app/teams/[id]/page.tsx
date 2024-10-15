@@ -18,34 +18,27 @@ import { getNextClosestGame } from "@/lib/getNextGame";
 import { useTeamsQuery } from "@/lib/queries/useTeamsQuery";
 import { getAllFutureGamesForTeam } from "@/lib/getAllFutureGamesForTeam";
 import { format } from "date-fns";
-import { MapPin, CalendarPlus } from "lucide-react"; // Importing the CalendarPlus icon from lucide-react
+import { CalendarPlus, MapPin } from "lucide-react"; // Importing the CalendarPlus icon from lucide-react
 import NPCDialogue from "@/app/teams/[id]/NPCDialogue";
-import { NextGameInfo } from "@/lib/Schedule.types";
-
-function getGoogleCalendarLink(nextGame: NextGameInfo) {
-  if (!nextGame) return "#";
-
-  // Format the date and include the Pacific timezone
-  const startDate = format(nextGame.date, "yyyyMMdd'T'HHmmss"); // Removed "Z"
-  const endDate = format(
-    new Date(nextGame.date.getTime() + 2 * 60 * 60 * 1000), // Adds 2 hours to the game date
-    "yyyyMMdd'T'HHmmss",
-  ); // Removed "Z"
-
-  const details = encodeURIComponent(
-    `${nextGame.game.team1} vs ${nextGame.game.team2}`,
-  );
-  const location = encodeURIComponent(nextGame.game.location);
-
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${details}&dates=${startDate}/${endDate}&location=${location}&ctz=America/Los_Angeles&sf=true&output=xml`;
-}
+import { TeamPageSkeletonLoader } from "@/app/teams/[id]/TeamPageSkeletonLoader";
+import { getGoogleCalendarLink } from "@/lib/getGoogleCalendarLink";
 
 export default function TeamPage() {
   const { id: teamId } = useParams<{ id: string }>();
 
-  const { data: { schedule } = {} } = useTeamsQuery();
+  // Using React Query to fetch the teams and schedule
+  const { data: { schedule } = {}, isLoading } = useTeamsQuery();
 
   const teamName = decodeTeamName(teamId);
+
+  // If React Query is still loading, show skeletons
+  if (isLoading) {
+    return (
+      <div className="flex flex-col mx-10 gap-8 items-center">
+        <TeamPageSkeletonLoader />
+      </div>
+    );
+  }
 
   const nextGame = getNextClosestGame(schedule ?? [], teamName);
   const futureGameInfos = getAllFutureGamesForTeam(schedule ?? [], teamName);
@@ -98,7 +91,7 @@ export default function TeamPage() {
                   href={getGoogleCalendarLink(nextGame)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute top-6 right-6 text-blue-500 hover:text-blue-700"
+                  className="absolute top-4 right-4 text-blue-500 hover:text-blue-700"
                 >
                   <CalendarPlus className="h-6 w-6" />
                 </a>
