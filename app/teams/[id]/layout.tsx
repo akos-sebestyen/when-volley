@@ -3,6 +3,10 @@ export const metadata = {
   description: "No Frills, just volleyball schedules.",
 };
 
-export default function Home() {
-  return <></>;
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return children;
 }
