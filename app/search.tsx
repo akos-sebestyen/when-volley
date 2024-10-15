@@ -1,23 +1,13 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
-import { useDebounce } from "../lib/useDebounce";
+import { Command, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent } from "@/components/ui/popover";
 import { PopoverAnchor } from "@radix-ui/react-popover";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { b64DecodeUnicode, b64EncodeUnicode } from "@/lib/b64";
+import { useParams, useRouter } from "next/navigation";
+import { b64EncodeUnicode } from "@/lib/b64";
 import { decodeTeamName } from "@/lib/decodeTeamName";
 import { useTeamsQuery } from "@/lib/queries/useTeamsQuery";
 

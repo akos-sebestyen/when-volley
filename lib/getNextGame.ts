@@ -37,10 +37,11 @@ export function getNextClosestGame(
       timeString = timeString.replace("/s(PST|PDT)$/", ""); // Removes "PST", "EST", etc., if present
 
       // Now split the time to handle AM/PM and hour parsing
-      let timeWithoutZone = timeString.split(" ")[0]; // e.g., "8:00"
-      let period = timeString.includes("PM") ? "PM" : "AM"; // Determine AM/PM
+      const timeWithoutZone = timeString.split(" ")[0]; // e.g., "8:00"
+      const period = timeString.includes("PM") ? "PM" : "AM"; // Determine AM/PM
 
       // Split hours and minutes
+      // eslint-disable-next-line prefer-const
       let [hours, minutes] = timeWithoutZone.split(":").map(Number);
 
       // Handle AM/PM for hours
