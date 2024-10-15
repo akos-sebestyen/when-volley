@@ -1,7 +1,6 @@
 "use client";
-// pages/index.js
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +19,7 @@ import { PopoverAnchor } from "@radix-ui/react-popover";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { b64DecodeUnicode, b64EncodeUnicode } from "@/lib/b64";
 import { decodeTeamName } from "@/lib/decodeTeamName";
+import { useTeamsQuery } from "@/lib/queries/useTeamsQuery";
 
 export default function Search() {
   const router = useRouter();
@@ -28,30 +28,15 @@ export default function Search() {
   const [searchTerm, setSearchTerm] = useState(
     teamId ? decodeTeamName(teamId) : "",
   );
-  const [teamNames, setTeamNames] = useState<string[]>([]);
+
   const [filteredTeams, setFilteredTeams] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Fetch team names when the component mounts
-  React.useEffect(() => {
-    async function fetchTeamNames() {
-      try {
-        const response = await fetch("/api/teams");
-        const {
-          data: { teamNames: apiTeamNames },
-        } = await response.json();
-        setTeamNames(apiTeamNames);
-      } catch (error) {
-        console.error("Error fetching team names:", error);
-      }
-    }
-
-    fetchTeamNames();
-  }, []);
+  const { data: { teamNames } = {} } = useTeamsQuery();
 
   // Filter team names based on the search term
-  React.useEffect(() => {
-    if (searchTerm) {
+  useEffect(() => {
+    if (searchTerm && teamNames) {
       const results = teamNames.filter((team) =>
         team.toLowerCase().includes(searchTerm.toLowerCase()),
       );

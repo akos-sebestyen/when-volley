@@ -1,41 +1,9 @@
 import axios from "axios";
 import { load } from "cheerio";
 import NodeCache from "node-cache";
+import { DaySchedule, Game, Schedule } from "@/lib/Schedule.types";
 
 const dataCache = new NodeCache({ stdTTL: 60 * 60 });
-
-// schedule object
-/**
- * [
- * {
- *  date: "2021-09-01",
- *  games: [
- *    {
- *      team1: "team1",
- *      team2: "team2",
- *      time: "19:00",
- *      location: "location",
- *      locationLink: "locationLink"
- *    }
- *  ]
- * }
- * ]
- */
-
-type Game = {
-  team1: string;
-  team2: string;
-  time: string;
-  location: string;
-  locationLink?: string;
-};
-
-type DaySchedule = {
-  date: string;
-  games: Game[];
-};
-
-type Schedule = DaySchedule[];
 
 /**
  * Fetches and parses team names from the specified volleyball schedule website.
@@ -63,7 +31,7 @@ export async function getTeamData(): Promise<{
     const $ = load(data);
 
     // Initialize a Set to hold unique team names
-    const teamNames = new Set();
+    const teamNames = new Set<string>();
 
     const schedule: Schedule = [];
 
@@ -133,6 +101,6 @@ export async function getTeamData(): Promise<{
       "An error occurred while fetching team names:",
       error.message,
     );
-    return [];
+    return {};
   }
 }
