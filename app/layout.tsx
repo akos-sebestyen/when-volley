@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Search from "@/app/search";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +29,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div>
+          <main>
+            <Search />
+            {children}
+          </main>
+
+          <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+        </div>
       </body>
     </html>
   );

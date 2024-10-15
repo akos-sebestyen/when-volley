@@ -1,7 +1,7 @@
 "use client";
 // pages/index.js
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,9 +17,17 @@ import {
 } from "@/components/ui/popover";
 import { useDebounce } from "../lib/useDebounce";
 import { PopoverAnchor } from "@radix-ui/react-popover";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { b64DecodeUnicode, b64EncodeUnicode } from "@/lib/b64";
+import { decodeTeamName } from "@/lib/decodeTeamName";
 
-export default function LandingPage() {
-  const [searchTerm, setSearchTerm] = useState("");
+export default function Search() {
+  const router = useRouter();
+  const { id: teamId } = useParams<{ id: string }>();
+
+  const [searchTerm, setSearchTerm] = useState(
+    teamId ? decodeTeamName(teamId) : "",
+  );
   const [teamNames, setTeamNames] = useState<string[]>([]);
   const [filteredTeams, setFilteredTeams] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +60,7 @@ export default function LandingPage() {
   }, [searchTerm, teamNames]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
+    <div className="flex flex-col items-center justify-center mt-[10vh] bg-white">
       <h1 className="text-5xl font-bold">when volley??</h1>
       <div className="flex">
         <Command>
@@ -83,6 +91,8 @@ export default function LandingPage() {
                         onSelect={() => {
                           setSearchTerm(team);
                           setIsOpen(false);
+                          // navig
+                          router.push(`/teams/${b64EncodeUnicode(team)}`);
                         }}
                       >
                         {team}
