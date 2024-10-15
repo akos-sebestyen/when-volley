@@ -5,6 +5,7 @@ import "./globals.css";
 import Search from "@/app/search";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,31 +48,33 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <QueryClientProvider client={queryClient}>
-          <div className="flex-grow">
-            <main className="flex-grow">
-              <Search />
-              {children}
-            </main>
-          </div>
+          <TooltipProvider>
+            <div className="flex-grow">
+              <main className="flex-grow">
+                <Search />
+                {children}
+              </main>
+            </div>
 
-          {/* Updated Footer with Light Background */}
-          <footer className="bg-gray-100 text-gray-800 py-4 flex items-center justify-center mt-5 w-full">
-            <a
-              href="https://github.com/akos-sebestyen/when-volley"
-              className="text-blue-500 hover:underline flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {/* GitHub Icon as an Image */}
-              <img
-                src="/icons/github.svg"
-                alt="GitHub"
-                className="mr-2 h-6 w-6"
-              />
-            </a>
-          </footer>
+            {/* Updated Footer with Light Background */}
+            <footer className="bg-gray-100 text-gray-800 py-4 flex items-center justify-center mt-5 w-full">
+              <a
+                href="https://github.com/akos-sebestyen/when-volley"
+                className="text-blue-500 hover:underline flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* GitHub Icon as an Image */}
+                <img
+                  src="/icons/github.svg"
+                  alt="GitHub"
+                  className="mr-2 h-6 w-6"
+                />
+              </a>
+            </footer>
 
-          <ReactQueryDevtools initialIsOpen={false} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </TooltipProvider>
         </QueryClientProvider>
       </body>
     </html>

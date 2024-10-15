@@ -28,3 +28,8 @@ export type DaySchedule = {
   games: Game[];
 };
 export type Schedule = DaySchedule[];
+
+export type NextGameInfo = {
+  game: Game;
+  date: Date;
+} | null;

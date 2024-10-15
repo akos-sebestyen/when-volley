@@ -1,10 +1,5 @@
-import { parse, isAfter, compareAsc, set } from "date-fns";
-import { Game, Schedule } from "./Schedule.types";
-
-type NextGameInfo = {
-  game: Game;
-  date: Date;
-} | null;
+import { compareAsc, isAfter, parse, set } from "date-fns";
+import { NextGameInfo, Schedule } from "./Schedule.types";
 
 export function getNextClosestGame(
   schedule: Schedule,
