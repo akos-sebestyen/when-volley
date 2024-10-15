@@ -6,6 +6,7 @@ import "./globals.css";
 import Search from "@/app/search";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <title>when volley??</title>
+        <meta
+          name="description"
+          content="No Frills, just volleyball schedules."
+        />
+
+        {/* Favicon link */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/image/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/image/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/image/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >

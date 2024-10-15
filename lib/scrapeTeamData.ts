@@ -97,10 +97,14 @@ export async function scrapeTeamData(): Promise<{
     // Convert the Set to an Array and return
     return { teamNames: Array.from(teamNames), schedule };
   } catch (error) {
-    console.error(
-      "An error occurred while fetching team names:",
-      error.message,
-    );
+    if (error instanceof Error) {
+      console.error(
+        "An error occurred while fetching team names:",
+        error.message,
+      );
+    } else {
+      console.error("An unknown error occurred.", error);
+    }
     return {};
   }
 }
