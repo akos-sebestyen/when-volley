@@ -98,7 +98,7 @@ export default function TeamPage() {
                   href={getGoogleCalendarLink(nextGame)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute top-4 right-4 text-blue-500 hover:text-blue-700"
+                  className="absolute top-6 right-6 text-blue-500 hover:text-blue-700"
                 >
                   <CalendarPlus className="h-6 w-6" />
                 </a>
