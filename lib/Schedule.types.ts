@@ -2,12 +2,12 @@
 /**
  * [
  * {
- *  date: "2021-09-01",
+ *  date: "Wed Oct 16, 2024",
  *  games: [
  *    {
  *      team1: "team1",
  *      team2: "team2",
- *      time: "19:00",
+ *      time: "8:00 PM PST",
  *      location: "location",
  *      locationLink: "locationLink"
  *    }

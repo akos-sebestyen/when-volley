@@ -47,8 +47,10 @@ export default function Search() {
   }, [searchTerm, teamNames]);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-[10vh] bg-white">
-      <h1 className="text-5xl font-bold">when volley??</h1>
+    <div className="flex flex-col items-center justify-center mt-[10vh]">
+      <a href="/">
+        <h1 className="text-5xl font-bold">when volley??</h1>
+      </a>
       <div className="flex">
         <Command>
           <Popover open={isOpen} onOpenChange={setIsOpen}>

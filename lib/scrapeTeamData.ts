@@ -10,7 +10,7 @@ const dataCache = new NodeCache({ stdTTL: 60 * 60 });
  *
  * @returns {Promise<string[]>} An array of unique team names.
  */
-export async function getTeamData(): Promise<{
+export async function scrapeTeamData(): Promise<{
   teamNames?: string[];
   schedule?: Schedule;
 }> {
@@ -75,7 +75,7 @@ export async function getTeamData(): Promise<{
         const time = $(element).find("td:nth-child(1)").text().trim();
 
         const location = $(element).find("td:nth-child(7)").text().trim();
-        const locationLink = $(element).find("td:nth-child(7) a").attr("href");
+        const locationLink = $(element).find("td:nth-child(8) a").attr("href");
 
         const game: Game = {
           team1,
