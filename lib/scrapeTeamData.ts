@@ -88,6 +88,7 @@ export async function scrapeTeamData(): Promise<{
         daySchedule.games.push(game);
         // Add team names to the Set to avoid duplicates
         if (team1) teamNames.add(team1);
+        if (team2) teamNames.add(team2);
       });
     });
 
