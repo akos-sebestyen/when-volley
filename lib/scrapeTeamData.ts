@@ -24,7 +24,7 @@ export async function scrapeTeamData(): Promise<{
 
     // Fetch the HTML content from the website
     const { data } = await axios.get(
-      "https://www.nofrillsvolleyball.com/leagues/schedules.cfm?clientid=2768&leagueid=6972",
+      "https://www.nfvl.ca/leagues/schedules.cfm?clientid=2768&leagueid=6972",
     );
 
     // Load the HTML into Cheerio
