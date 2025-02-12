@@ -12,6 +12,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -27,8 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <head title="NFVL Volleyball Schedule">
+        <meta property="og:title" content="NFVL Volleyball Schedule" />
+        <meta
+          property="og:description"
+          content="Check when your next volleybal game is without any frills."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:image" content="/image/spike.webp" />
+        <meta property="og:type" content="website" />
 
         <script
           async
